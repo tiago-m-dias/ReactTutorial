@@ -69,6 +69,7 @@ class Game extends React.Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
+
   }
 
   jumpTo(step) {
@@ -78,14 +79,31 @@ class Game extends React.Component {
     });
   }
 
+  getRowAndColumn(current, previous){
+
+    let i, currentChar;
+
+    for (let j = 0; j<10; j++){
+      if (current.squares[j] !== previous.squares[j]){
+        i = j; 
+        currentChar = current.squares[j]; 
+      }
+    }
+
+    let fuckinCol = i % 3;
+    let fuckinRow = parseInt(i / 3);
+    return " : " + currentChar + " to Column " + (fuckinCol + 1) + ", Row " + (fuckinRow + 1);
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
+    
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
+        'Go to move #' + move + this.getRowAndColumn(history[move], history[move - 1]) :
         'Go to game start';
       return (
         <li key={move}>
