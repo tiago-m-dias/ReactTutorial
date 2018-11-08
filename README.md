@@ -1,3 +1,2 @@
-# ReactTutorial
-React.js Tutorial
+# React.js Tutorial
 Tic Tac Toe
