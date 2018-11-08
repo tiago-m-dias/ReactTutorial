@@ -90,9 +90,9 @@ class Game extends React.Component {
       }
     }
 
-    let fuckinCol = i % 3;
-    let fuckinRow = parseInt(i / 3);
-    return " : " + currentChar + " to Column " + (fuckinCol + 1) + ", Row " + (fuckinRow + 1);
+    let currentCol = i % 3;
+    let currentRow = parseInt(i / 3);
+    return " : " + currentChar + " to Column " + (currentCol + 1) + ", Row " + (currentRow + 1);
   }
 
   render() {
@@ -105,9 +105,11 @@ class Game extends React.Component {
       const desc = move ?
         'Go to move #' + move + this.getRowAndColumn(history[move], history[move - 1]) :
         'Go to game start';
+
+      const currentMove = this.state.stepNumber === move ? 'currentMove' : ''; 
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className={currentMove} onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     });
