@@ -137,7 +137,11 @@ class Game extends React.Component {
     });
 
     let status, realWinners;
-    if (winner) {
+
+    if(this.state.stepNumber === 9 && !winner)
+    {
+      status = "DRAW!";
+    } else if (winner) {
       status = 'Winner: ' + winner[0];
       realWinners = winner[1];
     } else {
