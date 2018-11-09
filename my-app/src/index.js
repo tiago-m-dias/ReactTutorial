@@ -54,6 +54,7 @@ class Game extends React.Component {
       }],
       xIsNext: true,
       stepNumber: 0,
+      listOrdering: true,
     };
   }
 
@@ -99,6 +100,17 @@ class Game extends React.Component {
     return " : " + currentChar + " to Column " + (currentCol + 1) + ", Row " + (currentRow + 1);
   }
 
+
+  sortOrder = () => {
+    // const { prices } = this.state;
+    // prices.sort((a, b) => a - b)
+    // this.setState({ prices })
+    let listOder = !this.state.listOrdering;
+    this.setState({
+      listOrdering: listOder
+    });
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -126,6 +138,8 @@ class Game extends React.Component {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
+    let listOrder = this.state.listOrdering ? '' : 'reversed';
+
     return (
       <div className="game">
         <div className="game-board">
@@ -133,7 +147,8 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <button onClick={this.sortOrder}>Ascending / Descending order</button>
+          <ol reversed={listOrder}>{moves}</ol>
         </div>
       </div>
     );
