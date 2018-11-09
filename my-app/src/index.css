@@ -5,7 +5,17 @@ body {
 
 ol,
 ul {
+    display: flex;
     padding-left: 30px;
+    flex-direction: column;
+}
+
+li {
+    display: block;
+}
+
+.ol-reverse {
+    flex-direction: column-reverse;
 }
 
 .board-row:after {
